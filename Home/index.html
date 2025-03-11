@@ -7,7 +7,7 @@
       name="description"
       content="I'm NotExer a front back developer and QA tester]. Explore my projects, discover my skills and contact me to collaborate on innovative ideas. Visit my github page!"
     />
-    <title>NotExer</title>
+    <title>Calculator</title>
     <link rel="icon" type="image/png" href="../img/icon.webp" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,10 +15,11 @@
     <nav class="navbar animate-item">
       <img src="../img/Logo.webp" class="logo" alt="logo" />
       <ul class="menu">
+        <li class="item"><a href="#Home">Home</a></li>
         <li class="item"><a href="#Numeric">Numeric</a></li>
         <li class="item"><a href="#IMC">IMC</a></li>
         <li class="item"><a href="#Conversion">Conversion</a></li>
-        <li class="item"><a href="#AboutMe">About me</a></li>
+        <li class="item"><a href="#About">About me</a></li>
         <li class="item"><a href="#Contact">Contact</a></li>
       </ul>
 
@@ -30,43 +31,65 @@
   </header>
 
   <body>
-    <section id="Numeric">
-      <h2 class="sub_title">NUMERICAL CALCULATOR</h2>
+
+
+    <section id="Home">
       <div class="numeric_container">
-        <div class="numeric_answer"></div>
+        
+ 
+        <a href="#Numeric" class="numeric_box">
+          <img src="../img/icon.webp" alt="Numeric" class="calculator_icon">
+          <h3 class="numeric_title">Numeric</h3>
+        </a>
 
-        <div class="answer_box"></div>
+        <a href="#IMC" class="numeric_box">
+          <img src="../img/icon.webp" alt="IMC" class="calculator_icon">
+          <h3 class="numeric_title">IMC</h3>
+        </a>
+  
+        <a href="#Conversion" class="numeric_box">
+          <img src="../img/icon.webp" alt="Conversion" class="calculator_icon">
+          <h3 class="numeric_title">Conversion</h3>
+        </a>
+    </div>
 
-
-
-        <div class="buttons_box">
-        <div class="number_container">
-          <button class="number_box">1</innput>
-          <button class="number_box">2</innput>
-          <button class="number_box">3</innput>
-          <button class="number_box">4</innput>
-          <button class="number_box">5</innput>
-          <button class="number_box">6</innput>
-          <button class="number_box">7</innput>
-          <button class="number_box">8</innput>
-          <button class="number_box">9</innput> 
-          <button class="number_box">.</innput>
-          <button class="number_box">0</innput>
-          <button class="number_box">=</innput>
-        </div>
-                      
-        <div>            
-          <button class="simbol_box">DEL</innput>             
-          <button class="simbol_box">/</innput>
-          <button class="simbol_box">x</innput>
-          <button class="simbol_box">+</innput>
-          <button class="simbol_box">-</innput>
-        </div>
-</div>
-
-
-      </div>
     </section>
+
+    <section id="Numeric">
+      <h2 class="sub_title">Numeric Calculator</h2>
+      <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+          <button class="btn gray" onclick="clearDisplay()">AC</button>
+          <button class="btn gray" onclick="toggleSign()">+/-</button>
+          <button class="btn gray" onclick="percent()">%</button>
+          <button class="btn orange" onclick="appendOperator('÷')">÷</button>
+    
+          <button class="btn dark" onclick="appendNumber('7')">7</button>
+          <button class="btn dark" onclick="appendNumber('8')">8</button>
+          <button class="btn dark" onclick="appendNumber('9')">9</button>
+          <button class="btn orange" onclick="appendOperator('×')">×</button>
+    
+          <button class="btn dark" onclick="appendNumber('4')">4</button>
+          <button class="btn dark" onclick="appendNumber('5')">5</button>
+          <button class="btn dark" onclick="appendNumber('6')">6</button>
+          <button class="btn orange" onclick="appendOperator('-')">-</button>
+    
+          <button class="btn dark" onclick="appendNumber('1')">1</button>
+          <button class="btn dark" onclick="appendNumber('2')">2</button>
+          <button class="btn dark" onclick="appendNumber('3')">3</button>
+          <button class="btn orange" onclick="appendOperator('+')">+</button>
+    
+          <button class="btn dark zero" onclick="appendNumber('0')">0</button>
+          <button class="btn dark" onclick="appendNumber('.')">.</button>
+          <button class="btn orange" onclick="calculate()">=</button>
+        </div>
+      </div>
+
+
+
+    </section>
+  
 
     <section id="IMC"></section>
 

@@ -135,3 +135,98 @@ document.addEventListener("DOMContentLoaded", function () {
   const elements = document.querySelectorAll(".animate-item");
   elements.forEach((element) => observer.observe(element));
 });
+
+
+
+
+
+
+
+
+
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('.btn');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.textContent;
+
+    if (value === 'AC') {
+      display.textContent = display.textContent.slice(0, 0);
+
+      if (display.textContent === '' || display.textContent === 'Error') {
+        display.textContent = '0';
+      }
+
+    } else if (value === '=') {
+      calculateResult();
+
+    } else if (value === '+/-') {
+      toggleSign();
+
+    } else if (isOperator(value)) {
+      if (display.textContent === 'Error') return;
+      handleOperator(value);
+
+    } else {
+      if (display.textContent === '0' || display.textContent === 'Error') {
+        display.textContent = value;
+      } else {
+        display.textContent += value;
+      }
+    }
+  });
+});
+
+function isOperator(char) {
+  return ['+', '-', '×', '÷'].includes(char);
+}
+
+function handleOperator(operator) {
+  const lastChar = display.textContent.slice(-1);
+
+  if (isOperator(lastChar)) {
+    display.textContent = display.textContent.slice(0, -1) + operator;
+  } else {
+    display.textContent += operator;
+  }
+}
+
+function calculateResult() {
+  try {
+    let expression = display.textContent;
+
+    // Reemplaza los símbolos por los que eval() entiende
+    expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
+
+    // Procesa los porcentajes: convierte 50% en (50/100)
+    expression = expression.replace(/([0-9.]+)%/g, '($1/100)');
+
+    const result = eval(expression);
+
+    display.textContent = result;
+  } catch (error) {
+    display.textContent = 'Error';
+  }
+}
+
+function percent() {
+  if (display.textContent === '0' || display.textContent === 'Error') return;
+
+  // Si ya hay un % al final, no lo agregues otra vez
+  if (display.textContent.endsWith('')) return;
+
+  // Agrega el símbolo % al final del número actual
+  display.textContent += '%';
+}
+
+function toggleSign() {
+  if (display.textContent === '0' || display.textContent === 'Error') return;
+
+  // Si ya empieza con "-", se lo quitamos
+  if (display.textContent.startsWith('-')) {
+    display.textContent = display.textContent.substring(1);
+  } else {
+    display.textContent = '-' + display.textContent;
+  }
+}
