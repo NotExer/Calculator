@@ -147,43 +147,56 @@ document.addEventListener("DOMContentLoaded", function () {
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('.btn');
 
+// Agrega el evento a todos los botones
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     const value = button.textContent;
 
     if (value === 'AC') {
-      display.textContent = display.textContent.slice(0, 0);
-
-      if (display.textContent === '' || display.textContent === 'Error') {
-        display.textContent = '0';
-      }
+      clearDisplay();
 
     } else if (value === '=') {
-      calculateResult();
+      calculate();
 
     } else if (value === '+/-') {
       toggleSign();
 
+    } else if (value === '%') {
+      percent();
+
     } else if (isOperator(value)) {
-      if (display.textContent === 'Error') return;
-      handleOperator(value);
+      appendOperator(value);
 
     } else {
-      if (display.textContent === '0' || display.textContent === 'Error') {
-        display.textContent = value;
-      } else {
-        display.textContent += value;
-      }
+      appendNumber(value);
     }
   });
 });
 
+// Verifica si es un operador
 function isOperator(char) {
   return ['+', '-', '×', '÷'].includes(char);
 }
 
-function handleOperator(operator) {
+// Limpia el display
+function clearDisplay() {
+  display.textContent = '0';
+}
+
+// Agrega un número
+function appendNumber(number) {
+  if (display.textContent === '0' || display.textContent === 'Error') {
+    display.textContent = number;
+  } else {
+    display.textContent += number;
+  }
+}
+
+// Agrega un operador
+function appendOperator(operator) {
   const lastChar = display.textContent.slice(-1);
+
+  if (display.textContent === 'Error') return;
 
   if (isOperator(lastChar)) {
     display.textContent = display.textContent.slice(0, -1) + operator;
@@ -192,11 +205,30 @@ function handleOperator(operator) {
   }
 }
 
-function calculateResult() {
+// Cambia el signo del número
+function toggleSign() {
+  console.trace('toggleSign llamada');
+
+  if (display.textContent === '0' || display.textContent === 'Error') return;
+
+
+
+  if (display.textContent.startsWith('-')) {
+    display.textContent = display.textContent.substring(1);
+  } else {
+    display.textContent = '-' + display.textContent;
+
+  }
+
+
+}
+
+// Calcula el resultado
+function calculate() {
   try {
     let expression = display.textContent;
 
-    // Reemplaza los símbolos por los que eval() entiende
+    // Reemplaza los símbolos por los de eval
     expression = expression.replace(/×/g, '*').replace(/÷/g, '/');
 
     // Procesa los porcentajes: convierte 50% en (50/100)
@@ -210,23 +242,11 @@ function calculateResult() {
   }
 }
 
+// Agrega el símbolo de porcentaje
 function percent() {
   if (display.textContent === '0' || display.textContent === 'Error') return;
 
-  // Si ya hay un % al final, no lo agregues otra vez
-  if (display.textContent.endsWith('')) return;
+  if (display.textContent.endsWith('%')) return;
 
-  // Agrega el símbolo % al final del número actual
   display.textContent += '%';
-}
-
-function toggleSign() {
-  if (display.textContent === '0' || display.textContent === 'Error') return;
-
-  // Si ya empieza con "-", se lo quitamos
-  if (display.textContent.startsWith('-')) {
-    display.textContent = display.textContent.substring(1);
-  } else {
-    display.textContent = '-' + display.textContent;
-  }
 }
