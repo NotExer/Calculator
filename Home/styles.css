@@ -360,15 +360,17 @@ flex-direction: column;
   outline: none;
   border-radius: 125px;
   padding: 20px;
-  background-color: #ccc;
+  background-color: #333;
   color: #000;
   transition: 300ms ease-in-out;
   text-align: center;
   width: 250px;
+  font-size: 17px;
+  font-weight: 700;
 }
 
 .input:focus {
-  background-color: white;
+  background-color: #a5a5a5;
   transform: scale(1.05);
 
 }
@@ -376,7 +378,8 @@ flex-direction: column;
 .label{
   margin: 10px 0px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
+
 }
 
 

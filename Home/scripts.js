@@ -286,8 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validaciones básicas
     if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
-      title = 'Datos inválidos';
-      description = 'Por favor ingresa una altura y un peso válidos.';
+      title = 'Invalid data';
+      description = 'Please enter a valid height and weight.';
       imgSrc = '../img/defaul.png'; // Ruta de la imagen por defecto
       animateChange(title, description, imgSrc);
       return;
@@ -296,27 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const bmi = (weight / (height * height)).toFixed(2);
 
     if (bmi < 18.5) {
-      description = 'Estás por debajo de tu peso ideal (bajo peso).';
+      description = "You're below your ideal weight (underweight). It's important to review your diet to ensure you're getting enough calories and essential nutrients.";
       imgSrc = '../img/1.png';
     } else if (bmi >= 18.5 && bmi < 24.9) {
-      description = '¡Felicidades! Tienes un peso saludable.';
+      description = "Congratulations! You're at a healthy weight. Maintain a balanced diet rich in fruits, vegetables, lean proteins, and whole grains.";
       imgSrc = '../img/2.png';
     } else if (bmi >= 25 && bmi < 29.9) {
-      description = 'Tienes sobrepeso. Considera mejorar tus hábitos.';
+      description = "You're overweight. It's advisable to adopt a balanced diet, low in refined sugars and saturated fats, prioritizing natural foods such as fruits, vegetables, legumes, and lean proteins.";
       imgSrc = '../img/3.png';
     } else if (bmi >= 30 && bmi < 34.9) {
-      description = 'Obesidad grado I. Es recomendable acudir a un profesional de salud.';
+      description = "Grade I obesity. It's important to take steps to improve your health. It's suggested you start a diet supervised by a nutritionist, focused on gradually reducing calories and prioritizing nutrient-dense foods.";
       imgSrc = '../img/4.png';
     } else if (bmi >= 35 && bmi < 39.9) {
-      description = 'Obesidad grado II. Atención médica es importante.';
+      description = "Grade II obesity. Requires specialized medical attention. It's essential to establish a diet plan under the supervision of a nutritionist to help you control your calorie intake and improve the quality of your food.";
       imgSrc = '../img/5.png';
-    }else{
-      title = 'Datos inválidos';
-      description = 'Por favor ingresa una altura y un peso válidos.';
-      imgSrc = '../img/defaul.png'; // Ruta de la imagen por defecto
+    } else {
+      title = 'Invalid data';
+      description = "Please enter a valid height and weight to get an accurate result. Make sure the values ​​are within a logical range.";
+      imgSrc = '../img/defaul.png';
     }
+    
 
-    title = `Tu IMC es ${bmi}`;
+    title = `Your BMI is ${bmi}`;
 
     animateChange(title, description, imgSrc);
   }
