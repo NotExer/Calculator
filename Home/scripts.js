@@ -141,9 +141,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('.btn');
 
@@ -250,3 +247,101 @@ function percent() {
 
   display.textContent += '%';
 }
+
+
+
+
+
+
+
+// Esperamos que el DOM cargue antes de asignar eventos
+document.addEventListener('DOMContentLoaded', () => {
+  // Inputs de altura y peso
+  const heightInput = document.querySelectorAll('.input')[0]; 
+  const weightInput = document.querySelectorAll('.input')[1];
+
+  // Elementos donde mostramos los resultados
+  const resultTitle = document.querySelector('.output_imc h3');
+  const resultText = document.querySelector('.output_imc p');
+  const resultImg = document.querySelector('.output_imc img');
+
+  // Aplicamos las clases fade para preparar la animación
+  resultTitle.classList.add('fade', 'show');
+  resultText.classList.add('fade', 'show');
+  resultImg.classList.add('fade', 'show');
+
+  // Función que calcula el IMC
+  function calculateBMI() {
+    let height = parseFloat(heightInput.value);
+    const weight = parseFloat(weightInput.value);
+
+    // Si la altura es mayor a 10, se asume que la ingresaron en centímetros y se convierte a metros
+    if (height > 10.0) {
+      height = height / 100;
+    }
+
+    let title = '';
+    let description = '';
+    let imgSrc = '';
+
+    // Validaciones básicas
+    if (isNaN(height) || isNaN(weight) || height <= 0 || weight <= 0) {
+      title = 'Datos inválidos';
+      description = 'Por favor ingresa una altura y un peso válidos.';
+      imgSrc = '../img/defaul.png'; // Ruta de la imagen por defecto
+      animateChange(title, description, imgSrc);
+      return;
+    }
+
+    const bmi = (weight / (height * height)).toFixed(2);
+
+    if (bmi < 18.5) {
+      description = 'Estás por debajo de tu peso ideal (bajo peso).';
+      imgSrc = '../img/1.png';
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+      description = '¡Felicidades! Tienes un peso saludable.';
+      imgSrc = '../img/2.png';
+    } else if (bmi >= 25 && bmi < 29.9) {
+      description = 'Tienes sobrepeso. Considera mejorar tus hábitos.';
+      imgSrc = '../img/3.png';
+    } else if (bmi >= 30 && bmi < 34.9) {
+      description = 'Obesidad grado I. Es recomendable acudir a un profesional de salud.';
+      imgSrc = '../img/4.png';
+    } else if (bmi >= 35 && bmi < 39.9) {
+      description = 'Obesidad grado II. Atención médica es importante.';
+      imgSrc = '../img/5.png';
+    }else{
+      title = 'Datos inválidos';
+      description = 'Por favor ingresa una altura y un peso válidos.';
+      imgSrc = '../img/defaul.png'; // Ruta de la imagen por defecto
+    }
+
+    title = `Tu IMC es ${bmi}`;
+
+    animateChange(title, description, imgSrc);
+  }
+
+  // Función para animar el cambio de contenido
+  function animateChange(title, text, imgSrc) {
+    // Ocultamos primero (fade out)
+    resultTitle.classList.remove('show');
+    resultText.classList.remove('show');
+    resultImg.classList.remove('show');
+
+    setTimeout(() => {
+      // Cambiamos el contenido cuando esté invisible
+      resultTitle.textContent = title;
+      resultText.textContent = text;
+      resultImg.src = imgSrc;
+
+      // Mostramos de nuevo (fade in)
+      resultTitle.classList.add('show');
+      resultText.classList.add('show');
+      resultImg.classList.add('show');
+    }, 500); // Tiempo de la transición en milisegundos
+  }
+
+  // Escuchamos el evento de cambio en los inputs
+  heightInput.addEventListener('input', calculateBMI);
+  weightInput.addEventListener('input', calculateBMI);
+});

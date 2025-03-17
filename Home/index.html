@@ -31,67 +31,86 @@
   </header>
 
   <body>
-
-
     <section id="Home">
       <div class="numeric_container">
-        
- 
         <a href="#Numeric" class="numeric_box">
-          <img src="../img/icon.webp" alt="Numeric" class="calculator_icon">
+          <img src="../img/icon.webp" alt="Numeric" class="calculator_icon" />
           <h3 class="numeric_title">Numeric</h3>
         </a>
 
         <a href="#IMC" class="numeric_box">
-          <img src="../img/icon.webp" alt="IMC" class="calculator_icon">
+          <img src="../img/icon.webp" alt="IMC" class="calculator_icon" />
           <h3 class="numeric_title">IMC</h3>
         </a>
-  
+
         <a href="#Conversion" class="numeric_box">
-          <img src="../img/icon.webp" alt="Conversion" class="calculator_icon">
+          <img
+            src="../img/icon.webp"
+            alt="Conversion"
+            class="calculator_icon"
+          />
           <h3 class="numeric_title">Conversion</h3>
         </a>
-    </div>
-
+      </div>
     </section>
 
     <section id="Numeric">
       <h2 class="sub_title">Numeric Calculator</h2>
-      
+
       <div class="calculator">
         <div class="display" id="display">0</div>
-        
+
         <div class="buttons">
           <button class="btn gray">AC</button>
           <button class="btn gray">+/-</button>
           <button class="btn gray">%</button>
           <button class="btn orange">÷</button>
-    
+
           <button class="btn dark">7</button>
           <button class="btn dark">8</button>
           <button class="btn dark">9</button>
           <button class="btn orange">×</button>
-    
+
           <button class="btn dark">4</button>
           <button class="btn dark">5</button>
           <button class="btn dark">6</button>
           <button class="btn orange">-</button>
-    
+
           <button class="btn dark">1</button>
           <button class="btn dark">2</button>
           <button class="btn dark">3</button>
           <button class="btn orange">+</button>
-    
+
           <button class="btn dark zero">0</button>
           <button class="btn dark">.</button>
           <button class="btn orange">=</button>
         </div>
       </div>
     </section>
-    
-  
 
-    <section id="IMC"></section>
+    <section id="IMC">
+      <h2 class="sub_title">Body mass index</h2>
+      <div class="imc_container">
+        <div class="input_container">
+          <div class="qt_container">
+            <label class="label" for="input">Height</label>
+            <input type="number" name="height" class="input" placeholder="centimeters" />
+          </div>
+
+          <div class="qt_container">
+            <label class="label" for="input">Weight</label>
+            <input type="number" name="weight" class="input" placeholder="kilograms" />
+          </div>
+        </div>
+        <div class="output_imc">
+          <div>
+            <h3>Enter your height and weight</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed debitis sunt recusandae quae ullam omnis fugiat, aliquid aspernatur enim quo. Repudiandae, eos. Autem in recusandae molestias blanditiis animi, veritatis distinctio.</p>
+          </div>
+          <img src="../img/defaul.png" class="defaul_img">
+        </div>
+      </div>
+    </section>
 
     <section id="Conversion"></section>
 
@@ -101,4 +120,3 @@
   </body>
   <script src="scripts.js"></script>
 </html>
-
